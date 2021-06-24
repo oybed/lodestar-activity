@@ -2,18 +2,18 @@ apiVersion: v1
 kind: DeploymentConfig
 metadata:
   labels:
-    app: "{{ .Values.name }}-postgresql"
-  name: "{{ .Values.name }}-postgresql"
+    app: "lodestar-activity-postgresql"
+  name: "lodestar-activity-postgresql"
 spec:
   replicas: 1
   selector:
-    name: "{{ .Values.name }}-postgresql"
+    name: "lodestar-activity-postgresql"
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        name: "{{ .Values.name }}-postgresql"
+        name: "lodestar-activity-postgresql"
     spec:
       containers:
       - capabilities: {}
@@ -44,11 +44,11 @@ spec:
         terminationMessagePath: /dev/termination-log
         volumeMounts:
         - mountPath: /var/lib/pgsql/data
-          name: "{{ .Values.name }}-data"
+          name: "lodestar-activity-data"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
-      - name: pgdata
+      - name: lodestar-activity-data
         emptyDir: {}
   triggers:
   - imageChangeParams:
