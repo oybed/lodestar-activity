@@ -48,9 +48,8 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
-      - emptyDir:
-          medium: ""
-        name: "{{ .Values.name }}-data"
+      - name: pgdata
+        emptyDir: {}
   triggers:
   - imageChangeParams:
       automatic: true
